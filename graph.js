@@ -97,8 +97,13 @@ const graph = {
 
         if (Object.prototype.hasOwnProperty.call(data, 'paginate')) query += 'data';
 
-        // set response fields
-        query += '{' + self.fieldsToString(data.fields);
+        if (Object.prototype.hasOwnProperty.call(data, 'fields')) {
+            query += '{' + self.fieldsToString(data.fields);
+        }
+
+        if (Object.prototype.hasOwnProperty.call(data, 'fieldsRaw')) {
+            query += '{' + data.fieldsRaw;
+        }
 
         if (Object.prototype.hasOwnProperty.call(data, 'relations')) {
             query += ',' + self.relationsToString(data.relations);
