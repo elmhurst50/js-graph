@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/elmhurstprojects/js-graph.git"
+    "url": "git+ssh://git@bitbucket.org/elmhurstprojects/js-graph.git"
   },
   "keywords": [
     "graph"
@@ -16,7 +16,7 @@
   "author": "sam",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/elmhurstprojects/js-graph.git"
+    "url": "https://bitbucket.org/elmhurstprojects/js-graph.git"
   },
-  "homepage": "https://github.com/elmhurstprojects/js-graph.git#readme"
+  "homepage": "https://bitbucket.org/elmhurstprojects/js-graph.git#readme"
 }
