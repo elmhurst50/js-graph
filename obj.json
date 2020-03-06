@@ -1,0 +1,17 @@
+{
+  endpoint: null,
+  params: {
+    key: value
+  },
+  paramsRaw: '',
+  paginate: {
+    first: int,
+    page: int
+  },
+  fields: [],
+  relations: {
+    relationName: {
+      fields: []
+    }
+  }
+}

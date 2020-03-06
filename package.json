@@ -1,0 +1,22 @@
+{
+  "name": "js-graph",
+  "version": "1.0.0",
+  "description": "JS GraphQL",
+  "main": "graph.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/elmhurstprojects/js-graph.git"
+  },
+  "keywords": [
+    "graph"
+  ],
+  "author": "sam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elmhurstprojects/js-graph.git"
+  },
+  "homepage": "https://github.com/elmhurstprojects/js-graph.git#readme"
+}
