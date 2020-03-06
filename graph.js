@@ -99,17 +99,19 @@ const graph = {
 
         if (Object.prototype.hasOwnProperty.call(data, 'fields')) {
             query += '{' + self.fieldsToString(data.fields);
+
+            if (Object.prototype.hasOwnProperty.call(data, 'relations')) {
+                query += ',' + self.relationsToString(data.relations);
+            }
+
+            query += '}';
         }
 
         if (Object.prototype.hasOwnProperty.call(data, 'fieldsRaw')) {
-            query += '{' + data.fieldsRaw;
+            query += data.fieldsRaw;
         }
 
-        if (Object.prototype.hasOwnProperty.call(data, 'relations')) {
-            query += ',' + self.relationsToString(data.relations);
-        }
 
-        query += '}';
 
         if (Object.prototype.hasOwnProperty.call(data, 'paginate')) query += '}';
 
