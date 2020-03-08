@@ -112,7 +112,6 @@ const graph = {
         }
 
 
-
         if (Object.prototype.hasOwnProperty.call(data, 'paginate')) query += '}';
 
         return '{' + query + '}';
@@ -130,22 +129,26 @@ const graph = {
         for (const [key, value] of Object.entries(params)) {
 
             if (value !== null) {
-                switch (typeof value) {
-                    case "string":
-                        parmString += key + ':"' + value + '",';
-                        break;
+                if (Array.isArray(value)) {
+                    var newValue = value.map(function(item) { return '"' + item + '"' }).join(',');
 
-                    case "number":
-                        parmString += key + ':' + value + ',';
-                        break;
+                    parmString += key + ':[' + newValue + '],';
+                } else {
+                    switch (typeof value) {
+                        case "string":
+                            parmString += key + ':"' + value + '",';
+                            break;
 
-                    default:
-                        parmString += key + ':{' + self.paramsToString(value) + '},';
-                        break;
+                        case "number":
+                            parmString += key + ':' + value + ',';
+                            break;
+
+                        default:
+                            parmString += key + ':{' + self.paramsToString(value) + '},';
+                            break;
+                    }
                 }
             }
-
-
         }
 
         return parmString.substring(0, parmString.length - 1);
