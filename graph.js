@@ -81,12 +81,16 @@ const graph = {
             paginate = '{paginatorInfo{count,currentPage,firstItem,hasMorePages,lastItem,lastPage,perPage},';
         }
 
-        // set parameters
-        if (Object.prototype.hasOwnProperty.call(data, 'params')) {
+        // if just standard params are set with no raw params, you cant do params and params raw
+        if (Object.prototype.hasOwnProperty.call(data, 'params') && !Object.prototype.hasOwnProperty.call(data, 'paramsRaw')) {
+            console.log('have params');
             query += '(' + self.paramsToString(data.params) + ')';
         }
 
-        if (Object.prototype.hasOwnProperty.call(data, 'paramsRaw')) {
+        //otherwise we can add the params raw to the query
+        if (Object.prototype.hasOwnProperty.call(data, 'paramsRaw') && Object.prototype.hasOwnProperty.call(data, 'paginate')) {
+            query += '(' + self.paramsToString(data.params) + data.paramsRaw + ')';
+        }else if (Object.prototype.hasOwnProperty.call(data, 'paramsRaw')){
             query += '(' + data.paramsRaw + ')';
         }
 
