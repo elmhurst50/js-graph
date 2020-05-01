@@ -4,13 +4,21 @@ const vueGraph = {
     install(Vue, options){
         Object.defineProperty(Vue, 'graph', {
             get() {
-                return graph;
+                let i = graph;
+
+                i.url =  options.url;
+
+                return i;
             }
         })
 
         Object.defineProperty(Vue.prototype, '$graph', {
             get() {
-                return graph;
+                let i = graph;
+
+                i.url =  options.url;
+
+                return i;
             }
         })
     }

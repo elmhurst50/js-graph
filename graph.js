@@ -1,6 +1,6 @@
 const graph = {
 
-    url: (process.env.NODE_ENV == 'production') ? process.env.MIX_GRAPHQL_URL : process.env.MIX_GRAPHQL_URL,
+    url: null,
 
 
     /**
