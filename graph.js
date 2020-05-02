@@ -78,7 +78,7 @@ const graph = {
             data.params.first = data.paginate.first;
             data.params.page = data.paginate.page;
 
-            paginate = '{paginatorInfo{count,currentPage,firstItem,hasMorePages,lastItem,lastPage,perPage},';
+            paginate = '{paginatorInfo{total,count,currentPage,firstItem,hasMorePages,lastItem,lastPage,perPage},';
         }
 
         // if just standard params are set with no raw params, you cant do params and params raw
