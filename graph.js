@@ -2,6 +2,8 @@ const graph = {
 
     url: null,
 
+    total_params: 0,
+
 
     /**
      * Wrapper main call for API query calls
@@ -70,7 +72,7 @@ const graph = {
 
         // add paginator params to the main params object
         if (Object.prototype.hasOwnProperty.call(data, 'paginate')) {
-            console.log(data);
+
             if (typeof data.params === 'undefined') {
                 data.params = {};
             }
@@ -81,23 +83,10 @@ const graph = {
             paginate = '{paginatorInfo{total,count,currentPage,firstItem,hasMorePages,lastItem,lastPage,perPage},';
         }
 
-        // if just standard params are set with no raw params, you cant do params and params raw
-        if (Object.prototype.hasOwnProperty.call(data, 'params') && !Object.prototype.hasOwnProperty.call(data, 'paramsRaw')) {
-            console.log('have params');
-            query += '(' + self.paramsToString(data.params) + ')';
-        }
-
-        //otherwise we can add the params raw to the query
-        if (Object.prototype.hasOwnProperty.call(data, 'paramsRaw') && Object.prototype.hasOwnProperty.call(data, 'paginate')) {
-            query += '(' + self.paramsToString(data.params) + data.paramsRaw + ')';
-        }else if (Object.prototype.hasOwnProperty.call(data, 'paramsRaw')){
-            query += '(' + data.paramsRaw + ')';
-        }
+        query += this.addQueryParams(data);
 
         // add paginator return fields if set (this var will be null otherwise)
-        if (paginate !== false) {
-            query += paginate;
-        }
+        if (paginate !== false) query += paginate;
 
         if (Object.prototype.hasOwnProperty.call(data, 'paginate')) query += 'data';
 
@@ -121,6 +110,48 @@ const graph = {
         return '{' + query + '}';
     },
 
+
+    addQueryParams(data) {
+        if (Object.prototype.hasOwnProperty.call(data, 'paramsRaw')) return this.addQueryRawParams(data);
+
+        let param_string = '(';
+
+        if (Object.prototype.hasOwnProperty.call(data, 'params')) {
+            param_string += this.paramsToString(data.params);
+        }
+
+        if (Object.prototype.hasOwnProperty.call(data, 'order_by')) {
+
+            if (this.total_params > 0) param_string += ', '; //add comma if already have params
+
+            param_string += 'orderBy: [';
+
+            data.order_by.forEach((obj) => {
+                param_string += '{field:' + obj.field + ', order:' + obj.order + '}'
+            })
+
+            param_string += ']';
+        }
+
+        param_string += ')';
+
+        return param_string;
+    },
+
+    /**
+     * Formats the params if sent as a raw string, with pagination if required
+     * @param data
+     * @return {string}
+     */
+    addQueryRawParams(data) {
+        if (Object.prototype.hasOwnProperty.call(data, 'paramsRaw') && Object.prototype.hasOwnProperty.call(data, 'paginate')) {
+            return '(' + self.paramsToString(data.params) + data.paramsRaw + ')';
+        } else {
+            return '(' + data.paramsRaw + ')';
+        }
+    },
+
+
     /**
      * Takes the parameters part of the request object and return it as a string. Recursively goes through nested objects
      * @param params
@@ -132,9 +163,13 @@ const graph = {
 
         for (const [key, value] of Object.entries(params)) {
 
+            this.total_params++;
+
             if (value !== null) {
                 if (Array.isArray(value)) {
-                    var newValue = value.map(function(item) { return '"' + item + '"' }).join(',');
+                    var newValue = value.map(function (item) {
+                        return '"' + item + '"'
+                    }).join(',');
 
                     parmString += key + ':[' + newValue + '],';
                 } else {

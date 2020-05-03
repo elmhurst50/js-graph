@@ -14,6 +14,7 @@ Vue.use(VueGraph, {url: Your Graph URL for that environment});
   params: {
     key: value
   },
+  order_by:[{field:"CAPITAL_FIELD", order:"ASC"]
   paramsRaw: '',
   paginate: {
     first: int,
