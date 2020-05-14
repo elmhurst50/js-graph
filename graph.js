@@ -182,6 +182,10 @@ const graph = {
                             parmString += key + ':' + value + ',';
                             break;
 
+                        case "boolean":
+                            parmString += key + ':' + value + ',';
+                            break;
+
                         default:
                             parmString += key + ':{' + self.paramsToString(value) + '},';
                             break;
