@@ -135,6 +135,8 @@ const graph = {
 
         param_string += ')';
 
+        if(param_string === '()') return '';
+
         return param_string;
     },
 
