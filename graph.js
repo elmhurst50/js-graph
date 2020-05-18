@@ -188,7 +188,11 @@ const graph = {
                             parmString += key + ':' + value + ',';
                             break;
 
-                        default:
+                        case "array":
+                            parmString += key + ':[' + self.paramsToString(value) + '],';
+                            break;
+
+                        case "object":
                             parmString += key + ':{' + self.paramsToString(value) + '},';
                             break;
                     }
