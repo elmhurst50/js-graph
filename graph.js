@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from "axios";
 
 const graph = {
 
@@ -6,6 +6,14 @@ const graph = {
 
     total_params: 0,
 
+    /**
+     * Add a header to the axios call
+     * @param name
+     * @param value
+     */
+    setHeader(name, value) {
+        axios.defaults.headers.post[name] = value;
+    },
 
     /**
      * Wrapper main call for API query calls
@@ -137,7 +145,7 @@ const graph = {
 
         param_string += ')';
 
-        if(param_string === '()') return '';
+        if (param_string === '()') return '';
 
         return param_string;
     },
@@ -235,15 +243,12 @@ const graph = {
         for (const [key, value] of Object.entries(relations)) {
             relationString += key + '{';
 
-            relationString += self.fieldsToString(value.fields);
+            relationString += self.fieldsToString(value.fields) + '},';
 
             if (Object.prototype.hasOwnProperty.call(value, 'relations')) {
-                relationString += ',';
                 relationString += self.relationsToString(value.relations);
             }
         }
-
-        relationString += '},';
 
         return relationString.substring(0, relationString.length - 1);
     },
