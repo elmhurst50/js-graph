@@ -1,6 +1,6 @@
 {
   "name": "js-graph",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "JS GraphQL",
   "main": "vue-graph.js",
   "scripts": {
@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://bitbucket.org/elmhurstprojects/js-graph.git"
   },
-  "homepage": "https://bitbucket.org/elmhurstprojects/js-graph.git#readme"
+  "homepage": "https://bitbucket.org/elmhurstprojects/js-graph.git#readme",
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
 }
