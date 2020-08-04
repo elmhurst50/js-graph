@@ -243,11 +243,13 @@ const graph = {
         for (const [key, value] of Object.entries(relations)) {
             relationString += key + '{';
 
-            relationString += self.fieldsToString(value.fields) + '},';
+            relationString += self.fieldsToString(value.fields);
 
             if (Object.prototype.hasOwnProperty.call(value, 'relations')) {
                 relationString += self.relationsToString(value.relations);
             }
+
+            relationString +=  '},';
         }
 
         return relationString.substring(0, relationString.length - 1);
