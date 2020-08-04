@@ -246,7 +246,7 @@ const graph = {
             relationString += self.fieldsToString(value.fields);
 
             if (Object.prototype.hasOwnProperty.call(value, 'relations')) {
-                relationString += self.relationsToString(value.relations);
+                relationString += ' ' + self.relationsToString(value.relations);
             }
 
             relationString +=  '},';
