@@ -267,6 +267,8 @@ const graph = {
      * download_setup - {filename, columns[{display:'', field:''}]}
      */
     download(graph_request, download_setup) {
+        console.log(download_setup);
+
         graph_request.paginate = {first: 10000000, page: 1};
 
         this.download_setup = download_setup;
@@ -332,10 +334,18 @@ const graph = {
                             if (!_.isNull(row[fields[0]][fields[1]][fields[2]][fields[3]])) line += row[fields[0]][fields[1]][fields[2]][fields[3]][fields[4]];
                             break;
                         case 4:
-                            if (!_.isNull(row[fields[0]][fields[1]]) && !_.isNull(row[fields[0]][fields[1]][fields[2]])) line += row[fields[0]][fields[1]][fields[2]][fields[3]];
+                            if (!_.isNull(row[fields[0]])
+                                && !_.isUndefined(row[fields[0]])
+                                && !_.isNull(row[fields[0]][fields[1]])
+                                && !_.isUndefined(row[fields[0]][fields[1]])
+                                && !_.isNull(row[fields[0]][fields[1]][fields[2]])
+                                && !_.isUndefined(row[fields[0]][fields[1]][fields[2]])) line += row[fields[0]][fields[1]][fields[2]][fields[3]];
                             break;
                         case 3:
-                            if (!_.isNull(row[fields[0]]) && !_.isNull(row[fields[0]][fields[1]])) line += row[fields[0]][fields[1]][fields[2]];
+                            if (!_.isNull(row[fields[0]])
+                                && !_.isUndefined(row[fields[0]])
+                                && !_.isNull(row[fields[0]][fields[1]])
+                                && !_.isUndefined(row[fields[0]][fields[1]])) line += row[fields[0]][fields[1]][fields[2]];
                             break;
                         case 2:
                             if (!_.isNull(row[fields[0]])) line += row[fields[0]][fields[1]];
