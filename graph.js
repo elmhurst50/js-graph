@@ -27,8 +27,17 @@ const graph = {
         let self = this;
 
         return new Promise((resolve, reject) => {
+                let query = '';
 
-                let query = self.buildQueryString(data);
+                if (Array.isArray(data)) {
+                    data.forEach((obj) => {
+                        query += self.buildQueryString(obj);
+                    });
+                } else {
+                    query += self.buildQueryString(data);
+                }
+
+                query = '{' + query + '}';
 
                 axios.post(this.url, {query: query})
                     .then(response => {
@@ -119,7 +128,7 @@ const graph = {
 
         if (Object.prototype.hasOwnProperty.call(data, 'paginate')) query += '}';
 
-        return '{' + query + '}';
+        return  query;
     },
 
 
