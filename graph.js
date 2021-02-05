@@ -8,6 +8,8 @@ const graph = {
 
     download_setup: {},
 
+    post_options: {withCredentials: true},
+
     /**
      * Add a header to the axios call
      * @param name
@@ -15,6 +17,14 @@ const graph = {
      */
     setHeader(name, value) {
         axios.defaults.headers.post[name] = value;
+    },
+
+    /**
+     * Change the POST options
+     * @param options
+     */
+    setPostOptions(options) {
+        this.post_options = options;
     },
 
     /**
@@ -39,7 +49,7 @@ const graph = {
 
                 query = '{' + query + '}';
 
-                axios.post(this.url, {query: query})
+                axios.post(this.url, {query: query}, this.post_options)
                     .then(response => {
                         resolve(response.data.data[data.endpoint]);
                     })
@@ -128,7 +138,7 @@ const graph = {
 
         if (Object.prototype.hasOwnProperty.call(data, 'paginate')) query += '}';
 
-        return  query;
+        return query;
     },
 
 
