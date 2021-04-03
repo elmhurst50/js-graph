@@ -1,23 +1,43 @@
+import _ from "lodash"
+
 /**
  * This is to solve a frustrating Nuxt/Node/Docker issue. When setting the BrowserAPIBaseURL to port localhost:70** for the GraphQL server for browsers
  * and APIBaseURL to 172.19.*.* to the GraphQL server as localhost:70** will be the localhost in the docker container no the users/devs browser (this isn't an issue
  * once in production and using DNS addresses. This works fine, but when doing SSR and the asyncData function to render it needs to know if its to use the client or server graph.
  */
+
 const graph_nuxt = {
 
+    graph: null,
+
+    graph_server: null,
+
+    setup(graph, graph_server){
+        this.graph = graph;
+
+        this.graph_server = graph_server
+    },
+
     /**
-     * Call the endpoint based on the process type
-     * @param graph - graph.js instance
-     * @param graph_server - graph_server.js instance
-     * @param process - From the nuxt framework, just pass it in.
-     * @param data - The query object
-     * @returns {*|Promise}
+     *
+     * @param data
+     * @param process
+     * @param graph - You can send in own graph object if you have not setup the default graph
+     * @param graph_server - You can send in own graph_server object if you have not setup the default graph_server
+     * @returns {promise}
      */
-    getEndPointQuery(graph, graph_server, process, data) {
+    getEndPointQuery(data, process, graph, graph_server) {
+        console.log('thisgraph', this.graph);
+        //If we are running on the serevr
+        if(process.server) {
+            return _.isUndefined(graph_server)
+                ? this.graph_server.getEndPointQuery(data)
+                : graph_server.getEndPointQuery(data)
+        }
 
-        if(process.server) return graph_server.getEndPointQuery(data)
-
-        return graph.getEndPointQuery(data);
+        return _.isUndefined(graph)
+            ? this.graph.getEndPointQuery(data)
+            : graph.getEndPointQuery(data)
     }
 }
 

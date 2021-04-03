@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1100c052-20d0-458d-ae13-8898c9f8305f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/graph-nuxt.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/string-builder.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph.js" beforeDir="false" afterPath="$PROJECT_DIR$/graph.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +83,7 @@
       <workItem from="1609756778256" duration="1207000" />
       <workItem from="1612002734946" duration="1381000" />
       <workItem from="1612538968468" duration="679000" />
-      <workItem from="1617435371418" duration="2403000" />
+      <workItem from="1617435371418" duration="3775000" />
     </task>
     <servers />
   </component>
