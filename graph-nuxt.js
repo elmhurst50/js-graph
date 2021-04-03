@@ -21,15 +21,16 @@ const graph_nuxt = {
     /**
      *
      * @param data
-     * @param process
+     * @param process_as_server - Boolean
      * @param graph - You can send in own graph object if you have not setup the default graph
      * @param graph_server - You can send in own graph_server object if you have not setup the default graph_server
      * @returns {promise}
      */
-    getEndPointQuery(data, process, graph, graph_server) {
-        console.log('thisgraph', this.graph);
+    getEndPointQuery(data, process_as_server, graph, graph_server) {
+        console.log('Nuxt process server is ', process);
+
         //If we are running on the serevr
-        if(process.server) {
+        if(process_as_server) {
             return _.isUndefined(graph_server)
                 ? this.graph_server.getEndPointQuery(data)
                 : graph_server.getEndPointQuery(data)
