@@ -1,6 +1,6 @@
 {
   "name": "js-graph",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "JS GraphQL",
   "main": "vue-graph.js",
   "scripts": {
@@ -8,18 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/elmhurstprojects/js-graph.git"
+    "url": "git+ssh://github.com/samjoyce777/js-graph"
   },
   "keywords": [
     "graph"
   ],
   "author": "sam",
   "license": "MIT",
-  "bugs": {
-    "url": "https://bitbucket.org/elmhurstprojects/js-graph.git"
-  },
-  "homepage": "https://bitbucket.org/elmhurstprojects/js-graph.git#readme",
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.19.2",
+    "lodash": "^4.17.21"
   }
 }
