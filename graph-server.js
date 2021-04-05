@@ -10,6 +10,15 @@ const graph_server = {
     url: null,
 
     /**
+     * Add a header to the axios call
+     * @param name
+     * @param value
+     */
+    setHeader(name, value) {
+        axios.defaults.headers.post[name] = value;
+    },
+
+    /**
      * Returns the string version on the data object request
      * @param data
      * @returns {string}
