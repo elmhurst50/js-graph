@@ -27,9 +27,9 @@ const graph_nuxt = {
      * @returns {promise}
      */
     getEndPointQuery(data, process_as_server, graph, graph_server) {
-        console.log('Nuxt process server is ', process);
+        //console.log('Nuxt process server is ', process.server);
 
-        //If we are running on the serevr
+        //If we are running on the server
         if(process_as_server) {
             return _.isUndefined(graph_server)
                 ? this.graph_server.getEndPointQuery(data)

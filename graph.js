@@ -60,7 +60,11 @@ const graph = {
 
                 axios.post(this.url, {query: query}, this.post_options)
                     .then(response => {
-                        resolve(response.data.data[data.endpoint]);
+                        if(Array.isArray(data)) {
+                            resolve(response.data.data);
+                        }else{
+                            resolve(response.data.data[data.endpoint])
+                        }
                     })
                     .catch(error => {
                         reject(error);

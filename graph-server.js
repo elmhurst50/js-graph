@@ -48,7 +48,11 @@ const graph_server = {
 
                 axios.post(this.url, {query: query})
                     .then(response => {
-                        resolve(response.data.data[data.endpoint]);
+                        if(Array.isArray(data)) {
+                            resolve(response.data.data);
+                        }else{
+                            resolve(response.data.data[data.endpoint])
+                        }
                     })
                     .catch(error => {
                         reject(error);
