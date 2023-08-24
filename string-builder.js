@@ -70,7 +70,7 @@ const string_builder = {
             param_string += 'orderBy: [';
 
             data.order_by.forEach((obj) => {
-                param_string += '{field:' + obj.field + ', order:' + obj.order + '}'
+                param_string += '{column:' + obj.field + ', order:' + obj.order + '}'
             })
 
             param_string += ']';

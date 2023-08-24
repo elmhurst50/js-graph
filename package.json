@@ -1,6 +1,6 @@
 {
   "name": "js-graph",
-  "version": "1.0.8",
+  "version": "2.0.0",
   "description": "JS GraphQL",
   "main": "vue-graph.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://github.com/samjoyce777/js-graph"
+    "url": "git+ssh://github.com/elmhurst50/js-graph"
   },
   "keywords": [
     "graph"
