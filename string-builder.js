@@ -67,10 +67,10 @@ const string_builder = {
 
             if (this.total_params > 0) param_string += ', '; //add comma if already have params
 
-            param_string += 'orderBy: [';
+            param_string += ', orderBy: [';
 
             data.order_by.forEach((obj) => {
-                param_string += '{column:' + obj.field + ', order:' + obj.order + '}'
+                param_string += '{column:' + obj.column + ', order:' + obj.order + '}'
             })
 
             param_string += ']';
